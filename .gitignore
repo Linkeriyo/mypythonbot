@@ -7,3 +7,5 @@ files/config.json
 files/macs.json
 
 .vs/
+
+venv/

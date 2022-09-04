@@ -10,7 +10,8 @@ prefix = config['prefix']
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = discord.Client(intents=intents)
+activity = discord.ActivityType.listening, name="linkeriyo"
+client = discord.Client(intents=intents, activity=activity)
 
 @client.event
 async def on_ready():
@@ -43,6 +44,6 @@ async def on_message(message):
                 await message.reply("no puc")
         except:
             await message.reply("¿QUÉ?")
-        
+
 
 client.run(token)
