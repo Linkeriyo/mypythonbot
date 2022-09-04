@@ -11,7 +11,7 @@ async def run(message, params):
             await message.reply("¿QUÉ?")
             return
 
-        if wol.send_magic_packet(params[0]):
+        if wol.wake(params[0]):
             await message.reply("enviado")
         else:
             await message.reply("no tengo deso")
