@@ -10,7 +10,7 @@ prefix = config['prefix']
 intents = discord.Intents.default()
 intents.message_content = True
 
-activity = discord.ActivityType.listening, name="linkeriyo"
+activity = discord.Activity(type=discord.ActivityType.listening, name='linkeriyo')
 client = discord.Client(intents=intents, activity=activity)
 
 @client.event
