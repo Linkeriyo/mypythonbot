@@ -7,7 +7,7 @@ macs = json.load(f)
 def send_magic_packet(name):
     try:
         mac_address = macs[name]
-        send_magic_packet(mac_address)
+        send_magic_packet(mac_address, interface='192.168.1.1')
         return True
     except:
         return False
