@@ -1,5 +1,6 @@
 import discord
-from wol import send_magic_packet
+from commands.wake import command as wakecommand
+from commands.ping import command as pingcommand
 import json
 
 configfile = open('files/config.json')
@@ -33,17 +34,11 @@ async def on_message(message):
         return  
 
     if words[0] == "wake":
-        try:
-            if not words[1]:
-                await message.reply("¿QUÉ?")
-                return
-
-            if send_magic_packet(words[1]):
-                await message.reply("enviado")
-            else:
-                await message.reply("no puc")
-        except:
-            await message.reply("¿QUÉ?")
+        await wakecommand.run(message, words[1:])
+    elif words[0] == "ping":
+        await pingcommand.run(message, words[1:])
+    else:
+        await message.reply('que dices')
 
 
 client.run(token)
