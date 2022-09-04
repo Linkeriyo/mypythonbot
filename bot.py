@@ -1,6 +1,7 @@
 import discord
 from commands.wake import command as wakecommand
 from commands.ping import command as pingcommand
+from commands.fakedelete import command as fakedeletecommand
 import json
 
 configfile = open('files/config.json')
@@ -37,6 +38,8 @@ async def on_message(message):
         await wakecommand.run(message, words[1:])
     elif words[0] == "ping":
         await pingcommand.run(message, words[1:])
+    elif words[0] == ";DELETE":
+        await fakedeletecommand.run(message, words[1:])
     else:
         await message.reply('que dices')
 
