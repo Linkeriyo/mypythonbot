@@ -3,8 +3,8 @@ from commands.wake import command as wakecommand
 from commands.ping import command as pingcommand
 from commands.fakedelete import command as fakedeletecommand
 from commands.debt_add import command as adddebtcommand
+from commands.debt_pay import command as paydebtcommand
 import db
-from models import Debt
 import settings
 
 db.Base.metadata.create_all(db.engine)
@@ -14,7 +14,7 @@ print("db initialized")
 intents = discord.Intents.default()
 intents.message_content = True
 
-activity = discord.Activity(type=discord.ActivityType.listening, name='linkeriyo')
+activity = discord.Activity(type=discord.ActivityType.listening, name='tests')
 client = discord.Client(intents=intents, activity=activity)
 
 @client.event
@@ -43,7 +43,10 @@ async def on_message(message):
     elif words[0] == ";DELETE":
         await fakedeletecommand.run(message, words[1:])
     elif words[0] == "debt":
-        await adddebtcommand.run(message, words[1:])
+        if words[1] == "add":
+            await adddebtcommand.run(message, words[1:])
+        elif words[1] == "pay":
+            await paydebtcommand.run(message, words[1:])
     else:
         await message.reply('que dices')
 

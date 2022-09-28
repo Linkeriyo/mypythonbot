@@ -1,12 +1,13 @@
-import sqlalchemy as db
+from datetime import date
+import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 print("initializing db")
 
-engine = db.create_engine(f'sqlite:///elpenco.sqlite')
+engine = sqlalchemy.create_engine(f'sqlite:///elpenco.sqlite')
 connection = engine.connect()
-metadata = db.MetaData()
+metadata = sqlalchemy.MetaData()
 Session = sessionmaker(bind=engine)
 session = Session()
 
